@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html >
+<head>
+    
+</head>
+<body>
+    <h1>Cadastro</h1>
+    <!-- fazendo referencia a view Cadastro com url-->
+    <form action="{% url 'Cadastro' %}" method="POST" >  {% csrf_token %} 
+        Nome: <input type="text" placeholder="ex: Juquinha" name="name"></input>
+        <br>
+        email: <input type="email" placeholder="ex: juquinha@gmail.com" name="email"></input>
+        <br>
+        Senha: <input type="password" placeholder="ex: AShbK$!@ias12" name="password"></input>
+        <br>
+        <input type="submit" value="cadastrar">
+    </form>
+</body>
+</html>
