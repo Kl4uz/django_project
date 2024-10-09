@@ -12,7 +12,11 @@ def cadastro(request):
         password = request.POST.get('password')
         return HttpResponse('dados enviados ' + name + '!')
 
-
-
 def login(request):
-    return render(request, 'login.html')
+    if request.method == 'GET':
+        return render(request, 'login.html')
+    else:
+        name = request.POST.get('name')
+        password = request.POST.get('password')
+        return HttpResponse('Login efetuado ' + name + '!')
+    

@@ -1,1 +1,16 @@
-<h1>Tela de Login</h1>
+<!DOCTYPE html>
+<html>
+<head>
+    
+</head>
+<body>
+    <h1>Login</h1>
+    <form action="{% url 'login' %}" method="POST"> {% csrf_token %}
+        Username: <input type="text" name="name">
+        <br>
+        Password: <input type="password" name="password">
+        <br>
+        <input type="submit" value="cadastrar">
+    </form>
+</body>
+</html>
