@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.urls import path
-from veiculo.views import cadastro, login, home
+from .views import cadastro, login, home
 
 urlpatterns = [
     #path('caminho url', função da view, name='apelido para a model')
