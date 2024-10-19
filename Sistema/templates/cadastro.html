@@ -5,6 +5,7 @@
 </head>
 <body>
     <h1>Cadastro</h1>
+    <p>{{mensagem}}</p>
     <!-- fazendo referencia a view Cadastro com url-->
     <form action="{% url 'cadastro' %}" method="POST" >  {% csrf_token %} 
         Nome: <input type="text" placeholder="ex: Juquinha" name="name"></input>

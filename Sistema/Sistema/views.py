@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
+from django.views.generic import View
 from django.contrib.auth import authenticate
 from django.contrib.auth import login as login_auth  #u can define parses to functions called with same name
 from django.contrib.auth.models import User
@@ -26,10 +27,16 @@ def cadastro(request):
         email = request.POST.get('email')
         password = request.POST.get('password')
         
+        if User.objects.filter(username = name).first() or User.objects.filter(email = email).first():
+            return render(request, 'cadastro.html', context={'mensagem': 'ja existe um usuário com este nome ou email.'})
+        
         user = User.objects.create_user(name, email, password)
+        user.save()
+        
+        return redirect('login')
 
-        if user:
-            return HttpResponse('OK!')
+        # if user:
+        #     return HttpResponse('OK!')
 
 def login(request):
     if request.method == 'GET':
@@ -48,3 +55,35 @@ def login(request):
                 return HttpResponse('Login efetuado ' + name + '!')
         else:
             return HttpResponse('Email ou senha inválidos!')
+        
+
+
+
+# class Login(View):
+
+#     action = request.POST.get()
+
+#     def get(self, request):
+        
+#         if User.is_authenticated and User.is_active:
+#             return redirect('/veiculo')
+#         else:
+#             return render(request, '/cadastro', None)
+
+
+#     def post(self, request):
+        
+#         name = request.POST.get('name')
+#         senha = request.POST.get('password')
+
+#         user = authenticate(request, name=name, password =senha)
+
+#         if user:
+#             if user.is_active:
+#                 login(request, user)
+#                 return redirect('/veiculo')
+#             else:
+#                 return HttpResponse('User Inativo')
+#         else:
+#             return redirect('/cadastro')
+        
