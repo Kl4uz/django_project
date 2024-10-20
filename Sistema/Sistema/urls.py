@@ -9,6 +9,6 @@ urlpatterns = [
     path('', home, name='home'),
     path('cadastro/', cadastro, name='cadastro'),
     path('login/', login, name = 'login'),
-    path('veiculo/', include('veiculo.urls'), name= 'veiculo')
+    path('veiculo/', include('veiculo.urls'), name='veiculo')
     # name = 'nome' é sensivel a Maiúsculo e minusculo!
 ]

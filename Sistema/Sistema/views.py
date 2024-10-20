@@ -52,7 +52,7 @@ def login(request):
             #autentica o user logado
             if user.is_active:
                 login_auth(request, user)
-                return HttpResponse('Login efetuado ' + name + '!')
+                return redirect('veiculo')
         else:
             return HttpResponse('Email ou senha inválidos!')
         
