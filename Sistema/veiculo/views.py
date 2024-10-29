@@ -1,5 +1,7 @@
 from django.shortcuts import render, redirect
 from .models import Veiculo
+from django.views.generic import View
+from django.contrib.auth import logout
 from django.http import Http404, FileResponse, HttpResponse
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import ListView,FormView
@@ -14,14 +16,25 @@ class ListarVeiculos(ListView):
     template_name = 'veiculo/list.html'
     model = Veiculo
     context_object_name = 'veiculo'
+
+    def post(self, request):
+        if 'create' in request.POST:
+            return redirect('create-veiculo')
+        
+        if 'exit' in request.POST:
+            logout(request)
+            return redirect('home')
+            
+        #caso contrario renderiza normalmente
+        return self.render_to_response({})
     
     # if request.method == 'GET':
     #     model = Veiculo.objects.all()
     #     return render(request, 'veiculo/list.html', {'veiculos': model})
-        
+    
     
 def CriarVeiculos(request):
-    return render(request, 'veiculos/criar.html')
+    return render(request, 'veiculo/criar.html')
 
 
 class APIListarVeiculos(ListAPIView):
@@ -33,3 +46,4 @@ class APIListarVeiculos(ListAPIView):
 
     def get_queryset(self):
         return Veiculo.objects.all()
+
